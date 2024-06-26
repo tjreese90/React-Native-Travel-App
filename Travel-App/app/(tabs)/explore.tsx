@@ -1,7 +1,5 @@
-// explore.tsx
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, Image, Platform } from 'react-native';
-
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -9,9 +7,14 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function TabTwoScreen() {
+	const headerBackgroundColor = {
+		light: '#D0D0D0',
+		dark: '',
+	};
+
 	return (
 		<ParallaxScrollView
-			headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+			headerBackgroundColor={headerBackgroundColor}
 			headerImage={
 				<Ionicons size={310} name='code-slash' style={styles.headerImage} />
 			}
@@ -50,11 +53,11 @@ export default function TabTwoScreen() {
 					For static images, you can use the{' '}
 					<ThemedText type='defaultSemiBold'>@2x</ThemedText> and{' '}
 					<ThemedText type='defaultSemiBold'>@3x</ThemedText> suffixes to
-					provide files for different screen densities
+					provide files for different screen densities.
 				</ThemedText>
 				<Image
 					source={require('@/assets/images/react-logo.png')}
-					style={{ alignSelf: 'center' }}
+					style={styles.image}
 				/>
 				<ExternalLink href='https://reactnative.dev/docs/images'>
 					<ThemedText type='link'>Learn more</ThemedText>
@@ -95,17 +98,15 @@ export default function TabTwoScreen() {
 					</ThemedText>{' '}
 					library to create a waving hand animation.
 				</ThemedText>
-				{Platform.select({
-					ios: (
-						<ThemedText>
-							The{' '}
-							<ThemedText type='defaultSemiBold'>
-								components/ParallaxScrollView.tsx
-							</ThemedText>{' '}
-							component provides a parallax effect for the header image.
-						</ThemedText>
-					),
-				})}
+				{Platform.OS === 'ios' && (
+					<ThemedText>
+						The{' '}
+						<ThemedText type='defaultSemiBold'>
+							components/ParallaxScrollView.tsx
+						</ThemedText>{' '}
+						component provides a parallax effect for the header image.
+					</ThemedText>
+				)}
 			</Collapsible>
 		</ParallaxScrollView>
 	);
@@ -121,5 +122,8 @@ const styles = StyleSheet.create({
 	titleContainer: {
 		flexDirection: 'row',
 		gap: 8,
+	},
+	image: {
+		alignSelf: 'center',
 	},
 });

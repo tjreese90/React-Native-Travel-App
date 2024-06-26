@@ -1,13 +1,29 @@
-// _layout.tsx
 import { Tabs } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import Colors from '../../constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
-	const colorScheme = useColorScheme() || 'light';
-	const themeColors = Colors[colorScheme];
+	// Use only the light color scheme
+	const themeColors = Colors.light;
+
+	const [fontsLoaded] = useFonts({
+		...Ionicons.font,
+	});
+
+	useEffect(() => {
+		if (fontsLoaded) {
+			SplashScreen.hideAsync();
+		}
+	}, [fontsLoaded]);
+
+	if (!fontsLoaded) {
+		return null;
+	}
 
 	return (
 		<Tabs

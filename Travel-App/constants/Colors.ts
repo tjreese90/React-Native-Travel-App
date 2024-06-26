@@ -1,18 +1,9 @@
-// Colors.ts
+// constants/Colors.ts
 const Colors = {
 	light: {
-		primaryColor: '#0000ff',
-		bgColor: '#ffffff',
-		black: '#000000',
-		white: '#ffffff',
-		tint: '#007aff',
-	},
-	dark: {
-		primaryColor: '#0000ff',
-		bgColor: '#000000',
-		black: '#000000',
-		white: '#ffffff',
-		tint: '#007aff',
+		bgColor: '#D0D0D0',
+		textColor: '#000',
+		tint: '#2f95dc',
 	},
 };
 
